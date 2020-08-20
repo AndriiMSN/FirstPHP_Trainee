@@ -12,6 +12,16 @@
   <a href="SIMPLE_POST.php">SIMPLE POST</a> <br>
   <a href="TEST.php">TEST</a> <br>
   <a href="PR_1.php">CONTACT FORM</a> <br>
+  <a href="checkInput.php">CheckInput</a> <br>
+  <a href=""></a>
+  <a href=""></a>
+  <a href=""></a>
+  <a href=""></a>
+  <a href=""></a>
+  <a href=""></a>
+  <a href=""></a>
+  <a href=""></a>
+  <a href=""></a>
 </body>
 
 </html>
