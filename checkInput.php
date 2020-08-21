@@ -9,9 +9,11 @@ $name = $email = "";
 $errName = $errMail = $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (!empty($_REQUEST['name'])) {
-    $name = filter($_REQUEST['name']);
-  } else {
-    $errName = "Input name!";
+    if (preg_match('/^[A-z]{1,10}[- ]?[A-z]{1,1}$/', $_REQUEST['name'])) {
+      $name = filter($_REQUEST['name']);
+    } else {
+      $errName = "Input valid name!";
+    }
   };
   if (!empty($_REQUEST['email'])) {
     $email = filter($_REQUEST['email']);
