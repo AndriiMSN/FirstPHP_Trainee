@@ -15,8 +15,8 @@
   <a href="checkInput.php">CheckInput</a> <br>
   <a href="Server.php">$_SERVER</a><br>
   <a href="PR_2/index.php">List</a> <br>
-  <a href="Session/session.php">Session</a>
-  <a href=""></a>
+  <a href="Session/session.php">Session</a> <br>
+  <a href="MySQL/DBAccess.php">INSERT DB</a>
   <a href=""></a>
   <a href=""></a>
   <a href=""></a>
