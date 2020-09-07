@@ -20,13 +20,9 @@ class TableRows extends RecursiveIteratorIterator
     echo "</tr>" . "\n";
   }
 }
-$servername = 'localhost';
-$username = 'root';
-$pass = 'root';
-$dbname = 'product';
+
 
 try {
-  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $select = $conn->prepare("SELECT * FROM products");
   $select->execute();
@@ -35,7 +31,6 @@ try {
     echo $value;
   }
 } catch (PDOException $e) {
-  echo "Error:". $e->getMessage();
+  echo "Error:" . $e->getMessage();
 }
-$conn = null;
 echo "</table>";

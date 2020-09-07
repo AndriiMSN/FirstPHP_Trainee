@@ -1,8 +1,5 @@
 <?php
-$servername = 'localhost';
-$username = 'root';
-$pass = 'root';
-$dbname = 'product';
+
 // try {
 //   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
 //   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -14,8 +11,8 @@ $dbname = 'product';
 // }
 // $conn = null;
 
-$err = 0;
-$name = $cost = $quantity = '';
+$err = $errD = 0;
+$name = $cost = $quantity = $deleteId = '';
 if (!empty($_POST['name'])) {
   $name = $_POST['name'];
 } else {
@@ -31,19 +28,27 @@ if (!empty($_POST['quantity'])) {
 } else {
   $err++;
 }
-if ($err == 0) {
-  try {
-    $conn1 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
-    $conn1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sqlQuer1 = "INSERT INTO products (nameProduct, costProduct, quantity) VALUES ('$name', '$cost', '$quantity');";
-    $conn1->exec($sqlQuer1);
-    header("Location: DBAccess.php");
-    echo 'insert new data OK!';
-  } catch (PDOException $e) {
-    echo $sqlQuer1 . '<br>' . $e->getMessage();
-  }
+if (!empty($_POST['delete'])) {
+  $deleteId = $_POST['delete'];
 } else {
-  echo 'input all fields';
+  $errD++;
 }
 
-$conn1 = null;
+try {
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  if ($err == 0) {
+    $sqlQuer1 = "INSERT INTO products (nameProduct, costProduct, quantity) VALUES ('$name', '$cost', '$quantity');";
+    $conn->exec($sqlQuer1);
+    header("location: DBAccess.php");
+    echo 'insert new data OK!';
+  }
+  if ($errD == 0) {
+    $sql_del = "DELETE FROM products WHERE id=$deleteId;";
+    $conn->exec($sql_del);
+    header("location: DBAccess.php");
+    echo 'insert new data OK!';
+  }
+} catch (PDOException $e) {
+  echo $sqlQuer1 . '<br>' . $e->getMessage();
+}
